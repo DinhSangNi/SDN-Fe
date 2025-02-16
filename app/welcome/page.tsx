@@ -10,6 +10,9 @@ const PROFILES = [
 const HomePage = async () => {
   return (
     <section className=''>
+      <h3 className='font-bold mt-8 text-4xl mb-4'>
+        Chào mừng các bạn đến với đại học FPT
+      </h3>
       <h3 className='font-bold mt-8 text-2xl mb-4'>
         Các chuyên gia của chúng tôi
       </h3>
