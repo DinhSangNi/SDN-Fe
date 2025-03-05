@@ -42,7 +42,7 @@ const Profile = () => {
                 key={index}
                 className='border-l-4 border-blue-500 pl-4 italic text-gray-600'
               >
-                "{testimonial}"
+                &quot;{testimonial}&quot;
               </blockquote>
             ))}
           </div>
