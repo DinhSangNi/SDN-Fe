@@ -58,8 +58,12 @@ export function CarouselPlugin() {
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
+      <div className='absolute top-1/2 left-2 flex items-center justify-center'>
+        <CarouselPrevious className='relative left-0 translate-x-0 hover:translate-x-0 hover:bg-primary/90' />
+      </div>
+      <div className='absolute top-1/2 right-2 flex items-center justify-center'>
+        <CarouselNext className='relative right-0 translate-x-0 hover:translate-x-0 hover:bg-primary/90' />
+      </div>
     </Carousel>
   );
 }
