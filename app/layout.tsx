@@ -3,6 +3,10 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import Image from 'next/image';
 import Link from 'next/link';
+import { FaFacebookSquare } from 'react-icons/fa';
+import { IoLogoYoutube } from 'react-icons/io';
+import { SiZalo } from 'react-icons/si';
+import { AiFillTikTok } from 'react-icons/ai';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -31,21 +35,38 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col items-center justify-center min-h-screen`}
       >
         <Link href='https://daihoc.fpt.edu.vn/'>
-          <div className='flex flex-row items-center justify-center gap-x-10 h-30'>
+          <div className='flex flex-row items-center justify-center gap-x-10 px-2'>
             <Image
               src={'/fpt-banner.png'}
               alt='FPT University'
               width={200} // Increased size
               height={100} // Increased size
             />
-
-            <h1 className='text-xl font-bold'>AISE LAB</h1>
+            <div className='flex flex-col items-center justify-center py-4'>
+              <h1 className='text-xl font-bold'>AiSE LAB</h1>
+              <h1 className='text-sm text-foreground md:text-lg'>
+                Kỹ thuật phần mềm
+              </h1>
+            </div>
           </div>
         </Link>
         {children}
-        <div className='flex flex-row items-center justify-center gap-x-10 h-30'>
-          <div className='text-sm text-foreground'>© 2025 AISE LAB.</div>
-          <div className='flex flex-row items-center justify-center gap-x-4'></div>
+        <div className='flex flex-row items-center justify-center gap-x-10 py-4'>
+          <div className='text-sm text-foreground'>© 2025 AiSE LAB.</div>
+          <div className='flex flex-row items-center justify-center gap-x-2'>
+            <Link href='https://www.facebook.com/daihocfpt'>
+              <FaFacebookSquare size={30} />
+            </Link>
+            <Link href='https://www.youtube.com/FPTUniversityChanel'>
+              <IoLogoYoutube size={30} />
+            </Link>
+            <Link href='https://zalo.me/daihocfpt'>
+              <SiZalo size={30} />
+            </Link>
+            <Link href='https://www.tiktok.com/@fptuniversity'>
+              <AiFillTikTok size={30} />
+            </Link>
+          </div>
         </div>
       </body>
     </html>
