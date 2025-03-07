@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 export default function StudentProfile() {
   return (
-    <div className='flex flex-col items-center min-h-screen bg-gray-100 p-4'>
+    <div className='flex flex-col items-center bg-gray-100 p-4'>
       {/* Profile Card */}
       <div className='bg-white shadow-lg rounded-2xl p-6 md:p-8 max-w-2xl w-full text-center'>
         <div className='relative w-32 h-32 md:w-40 md:h-40 mx-auto mb-4'>
