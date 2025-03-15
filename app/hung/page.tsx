@@ -16,7 +16,7 @@ export default function Profile() {
                         to deliver polished, intuitive, and user-friendly products.`,
             name: 'Ho Phi Hung',
             age: 21,
-            address: '34 Tang Bat Ho'
+            address: 'Mang Yang '
         }
     ]
     return (
