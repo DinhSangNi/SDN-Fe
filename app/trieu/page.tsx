@@ -44,7 +44,7 @@ export default function Profile() {
                   <span className="font-bold">Location:</span>
                   <span>{items.address}</span>
                   <div className='flex items-center gap-x-4 mt-4'>
-                    <Link href=''> <FaFacebook className='text-[1.2rem]' /></Link>
+                    <Link href=''> <FaFacebook className='text-[1.2rem]'/></Link>
                     <FaInstagramSquare className='text-[1.2rem]' />
                     <AiFillTikTok className='text-[1.2rem]' />
                   </div>
