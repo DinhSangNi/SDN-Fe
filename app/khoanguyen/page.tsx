@@ -14,9 +14,9 @@ export default function Profile() {
                         A skilled Frontend Developer should have a solid understanding of technologies like HTML, CSS, JavaScript, and popular libraries
                         or frameworks such as React, Angular, or Vue.js. Additionally, they collaborate closely with Backend Developers and UX/UI Designers
                         to deliver polished, intuitive, and user-friendly products.`,
-            name: 'NGuyễn Võ Trung KhoaKhoa',
+            name: 'Nguyễn Võ Trung Khoa',
             age: 18,
-            address: '02 Nguyen Hue'
+            address: 'An Nhơn, Bình Định'
         }
     ]
     return (
