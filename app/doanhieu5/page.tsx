@@ -30,10 +30,10 @@ export default function Profile() {
                 <div className="relative z-10 pt-20 px-6 pb-10">
                     {/* Avatar */}
                     <div className="flex justify-center mb-6">
-                        <img 
-                            src={informations[0].avatar} 
-                            alt="Avatar" 
-                            className="w-32 h-32 rounded-full border-4 border-white shadow-lg transform hover:scale-110 transition-transform duration-300" 
+                        <img
+                            src={informations[0].avatar}
+                            alt="Avatar"
+                            className="w-32 h-32 rounded-full border-4 border-white shadow-lg transform hover:scale-110 transition-transform duration-300"
                         />
                     </div>
 
