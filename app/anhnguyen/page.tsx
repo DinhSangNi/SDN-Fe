@@ -7,16 +7,16 @@ import { FaFacebook } from "react-icons/fa";
 export default function Profile() {
     const informations = [
         {
-            avatar: '/avatars/khoanguyen.jpg',
+            avatar: '/avatars/anhnguyen.jpg',
             position: `I'm a Fontend Developer`,
             description: `A Frontend Developer is responsible for building the user interface and user experience of web or mobile applications.
                         Their work involves designing and developing visual and interactive components, ensuring aesthetics, performance optimization, and cross-device compatibility.
                         A skilled Frontend Developer should have a solid understanding of technologies like HTML, CSS, JavaScript, and popular libraries
                         or frameworks such as React, Angular, or Vue.js. Additionally, they collaborate closely with Backend Developers and UX/UI Designers
                         to deliver polished, intuitive, and user-friendly products.`,
-            name: 'Nguyễn Võ Trung Khoa',
+            name: 'Nguyễn Huỳnh Kỳ Anh',
             age: 18,
-            address: 'An Nhơn, Bình Định'
+            address: 'Hoài Nhơn, Bình Định'
         }
     ]
     return (
