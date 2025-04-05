@@ -2,12 +2,12 @@ import Image from 'next/image';
 
 const Profile = () => {
   const user = {
-    name: 'Tường Vi',
+    name: 'Thanh Hằng',
     age: 20,
-    avatar: '/avatars/vi-avatar.png', // Replace with your avatar image path
-    bio: "Hi! I'm Lily, a 20-year-old girl learning Chinese. I love exploring new cultures and languages.",
-    hobbies: ['Reading', 'Traveling', 'Cooking', 'Photography'],
-    languages: ['Chinese', 'English', 'Spanish'],
+    avatar: '/avatars/thanh-hang.jpeg', // Replace with your avatar image path
+    bio: "Hi! I'm Hằng, a 22-year-old girl who loves playing badminton and sharing my sports journey on TikTok.",
+    hobbies: ['Badminton', 'Fitness', 'Traveling', 'Content Creation'],
+    languages: ['Vietnamese', 'English'],
   };
 
   return (
