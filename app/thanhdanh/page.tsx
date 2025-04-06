@@ -8,12 +8,15 @@ export default function Profile() {
     const informations = [
         {
             avatar: '/avatars/thanhdanh.jpg',
-            position: `I'm a Fontend Developer`,
-            description: `A Frontend Developer is responsible for building the user interface and user experience of web or mobile applications.
-                        Their work involves designing and developing visual and interactive components, ensuring aesthetics, performance optimization, and cross-device compatibility.
-                        A skilled Frontend Developer should have a solid understanding of technologies like HTML, CSS, JavaScript, and popular libraries
-                        or frameworks such as React, Angular, or Vue.js. Additionally, they collaborate closely with Backend Developers and UX/UI Designers
-                        to deliver polished, intuitive, and user-friendly products.`,
+            position: `Học sinh trung học phổ thông`,
+            description: `Tôi là một học sinh trung học phổ thông, đang trong giai đoạn quan trọng để phát triển bản thân và 
+            định hướng tương lai. Với tinh thần ham học hỏi và luôn cố gắng không ngừng, tôi không chỉ nỗ lực trong việc học 
+            tập các môn văn hóa mà còn tích cực tham gia các hoạt động ngoại khóa, câu lạc bộ và các cuộc thi do trường tổ chức. 
+            Tôi đặc biệt yêu thích các môn học như Toán, Tin học và Tiếng Anh, bởi chúng giúp tôi rèn luyện tư duy logic, 
+            khả năng sáng tạo và giao tiếp toàn cầu. Ngoài giờ học, tôi dành thời gian để khám phá công nghệ, đọc sách, học thêm
+            kỹ năng mềm và phát triển các sở thích cá nhân như thiết kế, viết lách hoặc chơi thể thao. Tôi tin rằng bản thân đang 
+            từng bước hoàn thiện để trở thành một người học sinh toàn diện, có trách nhiệm, biết quan tâm đến cộng đồng và sẵn 
+            sàng học hỏi để chuẩn bị tốt nhất cho hành trình học tập và nghề nghiệp trong tương lai.`,
             name: 'Thanh Danh',
             age: 18,
             address: 'An Nhon'
