@@ -7,6 +7,8 @@ import { FaFacebookSquare } from 'react-icons/fa';
 import { IoLogoYoutube } from 'react-icons/io';
 import { SiZalo } from 'react-icons/si';
 import { AiFillTikTok } from 'react-icons/ai';
+import Navigation from '@/components/custom/Navigation';
+import Footer from '@/components/custom/Footer';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -30,11 +32,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en'>
+    <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col items-center justify-center min-h-screen`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased w-full min-h-screen`}
       >
-        <Link href='https://daihoc.fpt.edu.vn/'>
+        {/* <Link href='https://daihoc.fpt.edu.vn/'>
           <div className='flex flex-row items-center justify-center gap-x-10 px-2'>
             <Image
               src={'/fpt-banner.png'}
@@ -67,7 +69,10 @@ export default function RootLayout({
               <AiFillTikTok size={30} />
             </Link>
           </div>
-        </div>
+        </div> */}
+        <Navigation />
+        <main className="w-full pt-[62px]">{children}</main>
+        <Footer />
       </body>
     </html>
   );

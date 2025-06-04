@@ -32,18 +32,18 @@ export function CarouselPlugin() {
       plugins={[plugin.current]}
       onMouseEnter={plugin.current.stop}
       onMouseLeave={plugin.current.reset}
-      className='w-full min-h-screen'
+      className="w-full min-h-screen"
     >
       <CarouselContent>
         {images.map((url, index) => (
           <CarouselItem key={index}>
             <Card>
-              <CardContent className='flex items-center justify-center w-full min-h-screen'>
+              <CardContent className="flex items-center justify-center w-full min-h-screen">
                 <Image
-                  className='min-h-screen'
+                  className="min-h-screen"
                   aria-hidden
                   src={url}
-                  alt='Globe icon'
+                  alt="Globe icon"
                   width={1000}
                   height={1000}
                   priority
@@ -58,11 +58,11 @@ export function CarouselPlugin() {
           </CarouselItem>
         ))}
       </CarouselContent>
-      <div className='absolute top-1/2 left-2 flex items-center justify-center'>
-        <CarouselPrevious className='relative left-0 translate-x-0 hover:translate-x-0 hover:bg-primary/90' />
+      <div className="absolute top-1/2 left-2 flex items-center justify-center">
+        <CarouselPrevious className="relative left-0 translate-x-0 hover:translate-x-0 hover:bg-primary/90" />
       </div>
-      <div className='absolute top-1/2 right-2 flex items-center justify-center'>
-        <CarouselNext className='relative right-0 translate-x-0 hover:translate-x-0 hover:bg-primary/90' />
+      <div className="absolute top-1/2 right-2 flex items-center justify-center">
+        <CarouselNext className="relative right-0 translate-x-0 hover:translate-x-0 hover:bg-primary/90" />
       </div>
     </Carousel>
   );

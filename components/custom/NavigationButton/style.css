@@ -1,0 +1,21 @@
+.navigation_btn {
+  position: relative;
+  padding: 4px;
+  font-weight: bold;
+}
+
+.btn_underline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background: black;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease-in-out;
+}
+
+.navigation_btn:hover .btn_underline {
+  transform: scaleX(1);
+}
