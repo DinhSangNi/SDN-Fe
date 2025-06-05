@@ -31,7 +31,7 @@ const BlogCard = ({ type, data }: Props) => {
             height={800}
             src={data.image}
             alt="blog_card"
-            className="w-full h-[250px] rounded-sm"
+            className="w-full md:h-[250px] rounded-sm"
           />
         </div>
 

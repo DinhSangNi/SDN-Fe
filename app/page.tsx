@@ -88,11 +88,11 @@ export default function HomePage() {
         {/* <CarouselPlugin></CarouselPlugin> */}
         <div className="w-full relative">
           <Image
-            width={800}
-            height={800}
+            width={400}
+            height={400}
             src={imageBackground}
             alt="background"
-            className="w-full max-h-screen object-cover"
+            className="w-screen max-h-screen object-cover"
           />
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-2/3 text-[#d4d4d8] text-center">
             <h1 className="text-[2.6rem] font-bold">AiSE LAB</h1>
@@ -106,9 +106,9 @@ export default function HomePage() {
         </div>
 
         {/* Blogs List */}
-        <div className="w-[80%] mx-auto">
+        <div className="md:w-[80%] w-[90%] mx-auto">
           <h1 className="font-bold text-[1.5rem] text-center my-6">Blog</h1>
-          <div className="w-full flex gap-4">
+          <div className="w-full sm:grid-cols-2 sm:gap-4 grid lg:grid-cols-3 lg:gap-4 gap-y-8">
             {blogs.map((blog) => (
               <div key={blog.id}>
                 <BlogCard data={blog} />
@@ -123,9 +123,9 @@ export default function HomePage() {
         </div>
 
         {/* Activity List */}
-        <div className="w-[80%] mx-auto">
+        <div className="w-[90%] md:w-[80%] mx-auto">
           <h1 className="font-bold text-[1.5rem] text-center my-6">Activity</h1>
-          <div className="w-full flex gap-4">
+          <div className="w-full sm:grid-cols-2 sm:gap-4 grid md:grid-cols-3 md:gap-4 gap-y-8">
             {activities.map((act) => (
               <div key={act.id}>
                 <BlogCard type={BlogType.ACTIVITY} data={act} />
