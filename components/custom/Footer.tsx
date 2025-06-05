@@ -16,7 +16,7 @@ const Footer = () => {
               <div className="text-center cursor-pointer">
                 <h1 className="text-[0.9rem] font-bold">AiSE LAB</h1>
                 <h1 className="text-[0.7rem] text-foreground">
-                  Kỹ thuật phần mềm
+                  Software Engineering
                 </h1>
               </div>
               <Image

@@ -70,7 +70,7 @@ const Navigation = () => {
             <div className="text-center cursor-pointer">
               <h1 className="text-[1rem] font-bold">AiSE LAB</h1>
               <h1 className="text-[0.8rem] text-foreground">
-                Kỹ thuật phần mềm
+                Software Engineering
               </h1>
             </div>
           </div>

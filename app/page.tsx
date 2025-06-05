@@ -97,10 +97,10 @@ export default function HomePage() {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-2/3 text-[#d4d4d8] text-center">
             <h1 className="text-[2.6rem] font-bold">AiSE LAB</h1>
             <p className="text-[1rem] text-white">
-              Official website of Ohm Lab
+              Official website of AiSE Lab
             </p>
             <p className="text-[1rem] text-white">
-              At FPT University Ho Chi Minh City
+              At FPT University, Quy Nhon AI Campus
             </p>
           </div>
         </div>
