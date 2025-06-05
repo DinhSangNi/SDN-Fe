@@ -1,12 +1,6 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
-import Image from 'next/image';
-import Link from 'next/link';
-import { FaFacebookSquare } from 'react-icons/fa';
-import { IoLogoYoutube } from 'react-icons/io';
-import { SiZalo } from 'react-icons/si';
-import { AiFillTikTok } from 'react-icons/ai';
 import Navigation from '@/components/custom/Navigation';
 import Footer from '@/components/custom/Footer';
 

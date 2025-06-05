@@ -7,9 +7,7 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 
-type Props = {};
-
-const SearchModal = (props: Props) => {
+const SearchModal = () => {
   return (
     <>
       <Dialog>

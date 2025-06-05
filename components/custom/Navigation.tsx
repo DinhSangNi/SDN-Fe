@@ -102,7 +102,9 @@ const Navigation = () => {
                 </div>
                 <div className="bg-gray-200 w-full min-h-[100px] max-h-[300px] overflow-y-auto px-4 py-2">
                   {searchText.length > 0 &&
-                    blogs.map((blog) => <SearchedBlogCard data={blog} />)}
+                    blogs.map((blog) => (
+                      <SearchedBlogCard key={blog.id} data={blog} />
+                    ))}
                 </div>
                 <div className="w-full flex items-center pb-3">
                   {searchText.length > 0 && (

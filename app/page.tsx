@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import { CarouselPlugin } from '../components/custom/CarouselPlugin';
 import imageBackground from '@/public/images/IMG_0243.png';
 import blogImage from '@/public/images/IMG_0400.png';
 import BlogCard, { BlogType } from '@/components/custom/BlogCard';
