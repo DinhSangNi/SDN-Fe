@@ -1,67 +1,33 @@
 'use client';
 
-import MagnifyingGlass from '@/public/icons/MagnifyingGlassIcon';
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import NavigationButton from './NavigationButton/NavigationButton';
-import blogImage from '@/public/images/IMG_0400.png';
-import {
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog';
-import SearchedBlogCard from './SearchedBlogCard';
 import Link from 'next/link';
 import Bars3Icon from '@/public/icons/Bars3Icon';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X } from 'lucide-react';
-
-const blogs = [
-  {
-    id: '1',
-    title: 'How to build an Application with modern Technology',
-    description:
-      'Nemo vel ad consectetur namut rutrum ex, venenatis sollicitudin urna. Aliquam erat volutpat. Integer eu ipsum sem. Ut bibendum lacus vestibulum maximus suscipit. Quisque vitae nibh iaculis neque blandit euismod.',
-    image: blogImage,
-    author: {
-      avartar: '',
-      name: 'AiSe LAB',
-    },
-    categories: ['AI', 'Software'],
-  },
-  {
-    id: '2',
-    title: 'How to build an Application with modern Technology',
-    description:
-      'Nemo vel ad consectetur namut rutrum ex, venenatis sollicitudin urna. Aliquam erat volutpat. Integer eu ipsum sem. Ut bibendum lacus vestibulum maximus suscipit. Quisque vitae nibh iaculis neque blandit euismod.',
-    image: blogImage,
-    author: {
-      avartar: '',
-      name: 'AiSe LAB',
-    },
-    categories: ['AI', 'Software'],
-  },
-  {
-    id: '3',
-    title: 'How to build an Application with modern Technology',
-    description:
-      'Nemo vel ad consectetur namut rutrum ex, venenatis sollicitudin urna. Aliquam erat volutpat. Integer eu ipsum sem. Ut bibendum lacus vestibulum maximus suscipit. Quisque vitae nibh iaculis neque blandit euismod.',
-    image: blogImage,
-    author: {
-      avartar: '',
-      name: 'AiSe LAB',
-    },
-    categories: ['AI', 'Software'],
-  },
-];
+import { X, UserRound } from 'lucide-react';
+import SearchModal from './SearchModal';
+import { Button } from '../ui/button';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '@/store';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { logout } from '@/services/auth.service';
+import { logout as logoutAction } from '@/store/slices/authSlice';
+import toast from 'react-hot-toast';
+import { useRouter } from 'next/navigation';
 
 const Navigation = () => {
-  const [searchText, setSearchText] = useState<string>('');
   const [openMenu, setOpenMenu] = useState<boolean>(false);
-
-  const handleSearchTextChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearchText(e.target.value);
-  };
+  const user = useSelector((state: RootState) => state.auth);
+  const dispatch = useDispatch<AppDispatch>();
+  const router = useRouter();
 
   const handleOpenMenu = () => {
     setOpenMenu(true);
@@ -71,14 +37,27 @@ const Navigation = () => {
     setOpenMenu(false);
   };
 
-  useEffect(() => {}, [searchText]);
+  const handleLogout = async () => {
+    try {
+      const res = await logout();
+      if (res.status === 200) {
+        dispatch(logoutAction());
+        toast.success('Logout successfully', {
+          position: 'top-center',
+        });
+        router.push('/login');
+      }
+    } catch (error) {
+      console.log('error: ', error);
+    }
+  };
 
   return (
     <>
       <div className="w-screen h-[62px] py-2 shadow-md z-50 bg-white fixed">
         <div className="md:w-[80%] w-[95%] h-full mx-auto flex justify-between item-center">
           <div className="basis-1/4 flex justify-start">
-            <div className="justify-center cursor-pointer flex items-center">
+            <div className="justify-center cursor-pointer flex flex-col items-center">
               <h1 className="text-[1rem] font-bold">AiSE LAB</h1>
               <h1 className="hidden md:block text-[0.8rem] text-foreground">
                 Software Engineering
@@ -91,40 +70,56 @@ const Navigation = () => {
               <Link href={'/'}>Home</Link>
             </NavigationButton>
             <NavigationButton>About</NavigationButton>
-            <NavigationButton>Activity</NavigationButton>
-            <NavigationButton>Blog</NavigationButton>
+            <NavigationButton>
+              <Link href={'/lab/calendar'}>Booking</Link>
+            </NavigationButton>
+            <NavigationButton>
+              <Link href={'/game/'}>Game</Link>
+            </NavigationButton>
           </div>
-          <div className="md:flex hidden basis-1/4 flex-1 items-center justify-end">
-            <Dialog>
-              <DialogTrigger>
-                <MagnifyingGlass className="w-6 h-6" />
-              </DialogTrigger>
-              <DialogContent className="p-0">
-                <DialogTitle className="hidden"></DialogTitle>
-                <div className="flex border-[1px] gap-2 border-gray-400 p-2 rounded-sm m-4 mb-0 shadow-lg">
-                  <MagnifyingGlass className="w-6 h-6" />
-                  <input
-                    autoFocus
-                    value={searchText}
-                    type="text"
-                    placeholder="Search Post..."
-                    className="w-full hover:border-none focus-within:outline-none"
-                    onChange={handleSearchTextChange}
-                  />
-                </div>
-                <div className="bg-gray-200 w-full min-h-[100px] max-h-[300px] overflow-y-auto px-4 py-2">
-                  {searchText.length > 0 &&
-                    blogs.map((blog) => (
-                      <SearchedBlogCard key={blog.id} data={blog} />
-                    ))}
-                </div>
-                <div className="w-full flex items-center pb-3">
-                  {searchText.length > 0 && (
-                    <p className="text-[0.8rem] px-4">3 results</p>
+          <div className="md:flex hidden basis-1/4 flex-1 items-center justify-end gap-2">
+            <SearchModal />
+            {user.id ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger>
+                  <div className="w-8 h-8 flex items-center justify-center hover:bg-gray-200 rounded-full">
+                    {user.avatar ? (
+                      <img
+                        src={user.avatar}
+                        alt="avatar"
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <UserRound />
+                    )}
+                  </div>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  {user.role === 'admin' && (
+                    <DropdownMenuItem
+                      onClick={() => router.push('/admin/post')}
+                    >
+                      Dashboard
+                    </DropdownMenuItem>
                   )}
-                </div>
-              </DialogContent>
-            </Dialog>
+                  <DropdownMenuItem>Profile</DropdownMenuItem>
+                  <DropdownMenuItem onClick={handleLogout}>
+                    Logout
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <>
+                <Button color="white" variant="ghost">
+                  <Link href="/login">Sign In</Link>
+                </Button>
+                <Button>
+                  <Link href="/login">Sign Up</Link>
+                </Button>
+              </>
+            )}
           </div>
           {/* Mobile */}
           <div className="md:hidden flex items-center">

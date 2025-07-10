@@ -1,91 +1,20 @@
+'use client';
+
 import Image from 'next/image';
 import imageBackground from '@/public/images/IMG_0243.png';
-import blogImage from '@/public/images/IMG_0400.png';
-import BlogCard, { BlogType } from '@/components/custom/BlogCard';
-
-const blogs = [
-  {
-    id: '1',
-    title: 'How to build an Application with modern Technology',
-    description:
-      'Nemo vel ad consectetur namut rutrum ex, venenatis sollicitudin urna. Aliquam erat volutpat. Integer eu ipsum sem. Ut bibendum lacus vestibulum maximus suscipit. Quisque vitae nibh iaculis neque blandit euismod.',
-    image: blogImage,
-    author: {
-      avartar: '',
-      name: 'AiSe LAB',
-    },
-    categories: ['AI', 'Software'],
-  },
-  {
-    id: '2',
-    title: 'How to build an Application with modern Technology',
-    description:
-      'Nemo vel ad consectetur namut rutrum ex, venenatis sollicitudin urna. Aliquam erat volutpat. Integer eu ipsum sem. Ut bibendum lacus vestibulum maximus suscipit. Quisque vitae nibh iaculis neque blandit euismod.',
-    image: blogImage,
-    author: {
-      avartar: '',
-      name: 'AiSe LAB',
-    },
-    categories: ['AI', 'Software'],
-  },
-  {
-    id: '3',
-    title: 'How to build an Application with modern Technology',
-    description:
-      'Nemo vel ad consectetur namut rutrum ex, venenatis sollicitudin urna. Aliquam erat volutpat. Integer eu ipsum sem. Ut bibendum lacus vestibulum maximus suscipit. Quisque vitae nibh iaculis neque blandit euismod.',
-    image: blogImage,
-    author: {
-      avartar: '',
-      name: 'AiSe LAB',
-    },
-    categories: ['AI', 'Software'],
-  },
-];
-
-const activities = [
-  {
-    id: '1',
-    title: 'How to build an Application with modern Technology',
-    description:
-      'Nemo vel ad consectetur namut rutrum ex, venenatis sollicitudin urna. Aliquam erat volutpat. Integer eu ipsum sem. Ut bibendum lacus vestibulum maximus suscipit. Quisque vitae nibh iaculis neque blandit euismod.',
-    image: blogImage,
-    author: {
-      avartar: '',
-      name: 'AiSe LAB',
-    },
-    categories: ['Activity'],
-  },
-  {
-    id: '2',
-    title: 'How to build an Application with modern Technology',
-    description:
-      'Nemo vel ad consectetur namut rutrum ex, venenatis sollicitudin urna. Aliquam erat volutpat. Integer eu ipsum sem. Ut bibendum lacus vestibulum maximus suscipit. Quisque vitae nibh iaculis neque blandit euismod.',
-    image: blogImage,
-    author: {
-      avartar: '',
-      name: 'AiSe LAB',
-    },
-    categories: ['Activity'],
-  },
-  {
-    id: '3',
-    title: 'How to build an Application with modern Technology',
-    description:
-      'Nemo vel ad consectetur namut rutrum ex, venenatis sollicitudin urna. Aliquam erat volutpat. Integer eu ipsum sem. Ut bibendum lacus vestibulum maximus suscipit. Quisque vitae nibh iaculis neque blandit euismod.',
-    image: blogImage,
-    author: {
-      avartar: '',
-      name: 'AiSe LAB',
-    },
-    categories: ['Activity'],
-  },
-];
+import { useSelector } from 'react-redux';
+import { RootState } from '@/store';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import PostList from '@/components/custom/PostList';
 
 export default function HomePage() {
+  const user = useSelector((state: RootState) => state.auth);
+  const router = useRouter();
+
   return (
     <>
       <div className="w-full">
-        {/* <CarouselPlugin></CarouselPlugin> */}
         <div className="w-full relative">
           <Image
             width={400}
@@ -102,40 +31,31 @@ export default function HomePage() {
             <p className="text-[1rem] text-white">
               At FPT University, Quy Nhon AI Campus
             </p>
+            {user?.role !== 'student' && (
+              <Link href="/book-lab">
+                <button className="mt-4 px-6 py-2 bg-blue-600 text-white font-semibold rounded-md shadow hover:bg-blue-700 transition">
+                  📅 Đặt lịch sử dụng phòng lab
+                </button>
+              </Link>
+            )}
           </div>
         </div>
 
-        {/* Blogs List */}
+        {/* Annoucement List */}
         <div className="md:w-[80%] w-[90%] mx-auto">
-          <h1 className="font-bold text-[1.5rem] text-center my-6">Blog</h1>
-          <div className="w-full sm:grid-cols-2 sm:gap-4 grid lg:grid-cols-3 lg:gap-4 gap-y-8">
-            {blogs.map((blog) => (
-              <div key={blog.id}>
-                <BlogCard data={blog} />
-              </div>
-            ))}
-          </div>
-          <div className="flex justify-center py-8">
-            <button className="py-1 px-2 border-[1px] text-[0.8rem] font-bold rounded-sm border-black hover:text-white hover:bg-black transition-colors duration-150">
-              Read More
-            </button>
+          <h1 className="font-bold text-[1.5rem] text-center my-6">
+            Announcement
+          </h1>
+          <div className="w-full">
+            <PostList type="announcement" />
           </div>
         </div>
 
-        {/* Activity List */}
+        {/* Blog List */}
         <div className="w-[90%] md:w-[80%] mx-auto">
-          <h1 className="font-bold text-[1.5rem] text-center my-6">Activity</h1>
-          <div className="w-full sm:grid-cols-2 sm:gap-4 grid md:grid-cols-3 md:gap-4 gap-y-8">
-            {activities.map((act) => (
-              <div key={act.id}>
-                <BlogCard type={BlogType.ACTIVITY} data={act} />
-              </div>
-            ))}
-          </div>
-          <div className="flex justify-center py-8">
-            <button className="py-1 px-2 border-[1px] text-[0.8rem] font-bold rounded-sm border-black hover:text-white hover:bg-black transition-colors duration-150">
-              Read More
-            </button>
+          <h1 className="font-bold text-[1.5rem] text-center my-6">Blog</h1>
+          <div className="w-full">
+            <PostList type="post" />
           </div>
         </div>
       </div>

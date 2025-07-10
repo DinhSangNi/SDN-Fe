@@ -3,6 +3,11 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import Navigation from '@/components/custom/Navigation';
 import Footer from '@/components/custom/Footer';
+import { ReduxProvider } from './ReduxProvider';
+import { ReactQueryProvider } from './ReactQueryProvider';
+import AuthLoader from './AuthLoader ';
+import { Toaster } from 'react-hot-toast';
+import { TooltipProvider } from '@/components/ui/tooltip';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -30,9 +35,17 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased w-full min-h-screen`}
       >
-        <Navigation />
-        <main className="w-full pt-[62px]">{children}</main>
-        <Footer />
+        <ReactQueryProvider>
+          <ReduxProvider>
+            <AuthLoader />
+            <Toaster position="top-right" />
+            <TooltipProvider>
+              <Navigation />
+              <main className="w-full pt-[62px]">{children}</main>
+              <Footer />
+            </TooltipProvider>
+          </ReduxProvider>
+        </ReactQueryProvider>
       </body>
     </html>
   );

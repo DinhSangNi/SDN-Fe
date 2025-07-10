@@ -1,35 +1,25 @@
 import UserIcon from '@/public/icons/UserIcon';
-import { FolderIcon } from 'lucide-react';
-import Image, { StaticImageData } from 'next/image';
-
-export enum BlogType {
-  ACTIVITY = 'activity',
-}
+import { Post } from '@/types';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 type Props = {
-  type?: BlogType;
-  data: {
-    id: string;
-    title: string;
-    description: string;
-    image: StaticImageData;
-    author: {
-      avartar: string;
-      name: string;
-    };
-    categories: string[];
-  };
+  data: Post;
 };
 
-const BlogCard = ({ type, data }: Props) => {
+const PostCard = ({ data }: Props) => {
+  const router = useRouter();
   return (
     <>
-      <div className="w-full  hover:opacity-80 transition-opacity duration-200 cursor-pointer">
+      <div
+        className="w-full hover:opacity-80 transition-opacity duration-200 cursor-pointer"
+        onClick={() => router.push(`/post/${data._id}`)}
+      >
         <div className="w-full">
           <Image
             width={800}
             height={800}
-            src={data.image}
+            src={data.coverImage}
             alt="blog_card"
             className="w-full md:h-[250px] rounded-sm"
           />
@@ -37,15 +27,17 @@ const BlogCard = ({ type, data }: Props) => {
 
         <div>
           {/* Title */}
-          <h1 className="text-[1.2rem] py-4 font-bold">{data.title}</h1>
+          <h1 className="text-[1.2rem] py-4 font-bold">
+            <p className="line-clamp-2">{data.title}</p>
+          </h1>
 
           <div className="flex gap-4 items-center text-[0.8rem] mb-4">
             <div className="flex gap-2 items-center">
-              {data.author.avartar.length ? (
+              {data?.createdBy?.avatar ? (
                 <Image
                   width={800}
                   height={800}
-                  src={data.author.avartar}
+                  src={data?.createdBy?.avatar || ''}
                   alt="author_avartar"
                   className="h-6 w-6 rounded-full"
                 />
@@ -54,9 +46,9 @@ const BlogCard = ({ type, data }: Props) => {
                   <UserIcon className="w-3 h-3 text-white" />
                 </div>
               )}
-              <p>{data.author.name}</p>
+              <p>{data?.createdBy?.fullName}</p>
             </div>
-            <div className="flex gap-2 items-center">
+            {/* <div className="flex gap-2 items-center">
               <FolderIcon className="w-4 h-4 text-black" />
               {type === BlogType.ACTIVITY ? (
                 <p>{type}</p>
@@ -68,17 +60,18 @@ const BlogCard = ({ type, data }: Props) => {
                   >{`${cate}${index === 0 ? ', ' : ''}`}</p>
                 ))
               )}
-            </div>
+            </div> */}
           </div>
 
           {/* Description */}
-          <div>
-            <p>{data.description}</p>
-          </div>
+          <div
+            dangerouslySetInnerHTML={{ __html: data.content }}
+            className="line-clamp-4"
+          ></div>
         </div>
       </div>
     </>
   );
 };
 
-export default BlogCard;
+export default PostCard;
