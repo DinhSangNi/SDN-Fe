@@ -41,7 +41,7 @@ export default function RootLayout({
             <Toaster position="top-right" />
             <TooltipProvider>
               <Navigation />
-              <main className="w-full pt-[62px]">{children}</main>
+              <main className="w-full min-h-screen pt-[62px]">{children}</main>
               <Footer />
             </TooltipProvider>
           </ReduxProvider>
