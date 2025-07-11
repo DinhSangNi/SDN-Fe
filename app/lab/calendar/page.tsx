@@ -57,7 +57,7 @@ export default function CalendarView() {
 
   const toggleSlot = (date: string, slot: number) => {
     setSelectedSlots((prev) => {
-      let existing = prev[date] || [];
+      const existing = prev[date] || [];
       const exists = existing.includes(slot);
 
       if (exists) {

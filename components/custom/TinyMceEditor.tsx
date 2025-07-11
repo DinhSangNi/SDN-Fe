@@ -1,3 +1,4 @@
+/* eslint-disable */
 'use client';
 
 import { uploadMedia } from '@/services/media.service';
@@ -12,7 +13,7 @@ export default function TinyMceEditor({ value, onChange }: Props) {
   return (
     <Editor
       apiKey={process.env.NEXT_PUBLIC_TINYMCE_API_KEY}
-      value={value} // controlled by props
+      value={value}
       onEditorChange={(newContent) => {
         onChange?.(newContent);
       }}

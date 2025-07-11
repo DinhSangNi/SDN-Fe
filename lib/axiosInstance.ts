@@ -1,3 +1,4 @@
+/* eslint-disable */
 import axios, {
   AxiosError,
   type AxiosResponse,
@@ -70,7 +71,7 @@ api.interceptors.response.use(
             }
           })
           .catch((err) => {
-            Promise.reject(err);
+            return Promise.reject(err);
           });
       }
 

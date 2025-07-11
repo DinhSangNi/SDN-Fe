@@ -64,13 +64,11 @@ export default function LoginPage() {
         toast.success('Login successfully');
         router.push('/');
       }
-    } catch (error: any) {
-      console.log('error: ', error);
-      toast.error(error.response.data.message, {
+    } catch (error) {
+      toast.error('Your credentials may not correct', {
         position: 'top-center',
       });
     }
-    console.log('Đăng nhập với:', values);
   };
 
   return (
@@ -140,7 +138,7 @@ export default function LoginPage() {
 
               <div className="w-full text-center text-[0.9rem] mt-4">
                 <p>
-                  Don't have an account?{' '}
+                  {`Don't have an account?`}{' '}
                   <Link href="/register" className="hover:underline">
                     Register
                   </Link>

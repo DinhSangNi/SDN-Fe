@@ -27,7 +27,7 @@ export default function PostList({ type }: Props) {
     return (
       <p className="w-full text-center text-gray-300">
         <Inbox className="w-12 h-12 mx-auto  mb-2" />
-        "There are currently no {type}s available."
+        There are currently no {type}s available.
       </p>
     );
 

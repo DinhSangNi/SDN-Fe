@@ -29,7 +29,10 @@ export default function ConfirmDeleteDialog({
   children,
 }: Props) {
   const closeRef = useRef<HTMLButtonElement>(null);
-  const deleteMutation = type === 'post' ? useDeletePost() : useDeleteUser();
+  const deleteUserMutation = useDeleteUser();
+  const deletePostMutation = useDeletePost();
+  const deleteMutation =
+    type === 'post' ? deletePostMutation : deleteUserMutation;
 
   const handleDelete = () => {
     deleteMutation.mutate(id, {
@@ -39,8 +42,8 @@ export default function ConfirmDeleteDialog({
         );
         closeRef.current?.click();
       },
-      onError: (err: any) => {
-        toast.error(err?.response?.data?.message || `Delete ${type} failed`);
+      onError: () => {
+        toast.error(`Delete ${type} failed`);
       },
     });
   };

@@ -69,9 +69,9 @@ export default function LoginPage() {
         toast.success('Register successfully');
         router.push('/');
       }
-    } catch (error: any) {
+    } catch (error) {
       console.log('error: ', error);
-      toast.error(error.response.data.message, {
+      toast.error('Email already existed', {
         position: 'top-center',
       });
     }

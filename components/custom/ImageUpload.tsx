@@ -54,9 +54,9 @@ export default function ImageUpload({ value, onChange, onRemove }: Props) {
         toast.success('Image was removed');
         onRemove?.();
       }
-    } catch (error: any) {
+    } catch (error) {
       console.log('error: ', error);
-      toast.error(error.response.data.message);
+      toast.error('Upload image fail');
     } finally {
       setLoading(false);
     }
