@@ -32,7 +32,7 @@ export default function HomePage() {
               At FPT University, Quy Nhon AI Campus
             </p>
             {user?.role !== 'student' && (
-              <Link href="/book-lab">
+              <Link href="/lab/calendar">
                 <button className="mt-4 px-6 py-2 bg-blue-600 text-white font-semibold rounded-md shadow hover:bg-blue-700 transition">
                   📅 Đặt lịch sử dụng phòng lab
                 </button>
