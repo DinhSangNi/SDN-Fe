@@ -5,7 +5,7 @@ import NavigationButton from './NavigationButton/NavigationButton';
 import Link from 'next/link';
 import Bars3Icon from '@/public/icons/Bars3Icon';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, UserRound } from 'lucide-react';
+import { X, UserRound, LayoutDashboard, LogOut } from 'lucide-react';
 import SearchModal from './SearchModal';
 import { Button } from '../ui/button';
 import { useDispatch, useSelector } from 'react-redux';
@@ -57,7 +57,10 @@ const Navigation = () => {
       <div className="w-screen h-[62px] py-2 shadow-md z-50 bg-white fixed">
         <div className="md:w-[80%] w-[95%] h-full mx-auto flex justify-between item-center">
           <div className="basis-1/4 flex justify-start">
-            <div className="justify-center cursor-pointer flex flex-col items-center">
+            <div
+              className="justify-center cursor-pointer flex flex-col items-center"
+              onClick={() => router.push(`/`)}
+            >
               <h1 className="text-[1rem] font-bold">AiSE LAB</h1>
               <h1 className="hidden md:block text-[0.8rem] text-foreground">
                 Software Engineering
@@ -95,17 +98,22 @@ const Navigation = () => {
                   </div>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
-                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                  <DropdownMenuItem className="flex flex-col">
+                    <h1 className="text-[1.1rem] font-bold">{user.fullName}</h1>
+                    <p className="text-center">{user.email}</p>
+                  </DropdownMenuItem>
+
                   <DropdownMenuSeparator />
                   {user.role === 'admin' && (
                     <DropdownMenuItem
                       onClick={() => router.push('/admin/post')}
                     >
+                      <LayoutDashboard />
                       Dashboard
                     </DropdownMenuItem>
                   )}
-                  <DropdownMenuItem>Profile</DropdownMenuItem>
                   <DropdownMenuItem onClick={handleLogout}>
+                    <LogOut />
                     Logout
                   </DropdownMenuItem>
                 </DropdownMenuContent>
@@ -148,27 +156,31 @@ const Navigation = () => {
                   <div className="flex flex-col font-bold">
                     <Link
                       href="/"
+                      onClick={handleCloseMenu}
                       className="py-4 px-6 hover:bg-gray-300 text-center"
                     >
                       Home
                     </Link>
                     <Link
                       href="/about"
+                      onClick={handleCloseMenu}
                       className="py-4 px-6 hover:bg-gray-300 text-center"
                     >
                       About
                     </Link>
                     <Link
-                      href="/activity"
+                      href={`/lab/calendar`}
+                      onClick={handleCloseMenu}
                       className="py-4 px-6 hover:bg-gray-300 text-center"
                     >
-                      Activity
+                      Booking
                     </Link>
                     <Link
-                      href="blog"
+                      href={`/game`}
+                      onClick={handleCloseMenu}
                       className="py-4 px-6 hover:bg-gray-300 text-center"
                     >
-                      Blog
+                      Game
                     </Link>
                   </div>
                 </motion.div>

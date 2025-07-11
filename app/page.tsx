@@ -2,16 +2,9 @@
 
 import Image from 'next/image';
 import imageBackground from '@/public/images/IMG_0243.png';
-import { useSelector } from 'react-redux';
-import { RootState } from '@/store';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import PostList from '@/components/custom/PostList';
 
 export default function HomePage() {
-  const user = useSelector((state: RootState) => state.auth);
-  const router = useRouter();
-
   return (
     <>
       <div className="w-full">
@@ -31,13 +24,6 @@ export default function HomePage() {
             <p className="text-[1rem] text-white">
               At FPT University, Quy Nhon AI Campus
             </p>
-            {user?.role !== 'student' && (
-              <Link href="/lab/calendar">
-                <button className="mt-4 px-6 py-2 bg-blue-600 text-white font-semibold rounded-md shadow hover:bg-blue-700 transition">
-                  📅 Đặt lịch sử dụng phòng lab
-                </button>
-              </Link>
-            )}
           </div>
         </div>
 

@@ -95,7 +95,7 @@ export default function PostManagePage() {
                     alt="thumbnail"
                     width={1000}
                     height={800}
-                    className="rounded-md object-cover w-[80px]"
+                    className="rounded-md object-cover w-[80px] aspect-square"
                   />
                 )}
               </TableCell>

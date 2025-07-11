@@ -25,6 +25,7 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip';
 import { User } from '@/types';
+import { BackButton } from '@/components/custom/BackButton';
 
 const SLOT_TIME = {
   1: { start: '07:00', end: '09:15' },
@@ -92,16 +93,17 @@ export default function CalendarView() {
     });
   };
 
-  console.log('selectedSlots: ', selectedSlots);
-
   return (
     <div className="md:w-[80%] w-[90%] mx-auto py-10">
+      <div className="mb-2">
+        <BackButton />
+      </div>
       <div>
         <h1 className="text-[1.4rem] font-bold">Lab Booking System</h1>
         <p className="text-[0.9rem]">Schedule your lab sessions efficiently</p>
       </div>
-      <div className="grid grid-cols-2 gap-x-8 mt-8 items-start">
-        <div className="w-full h-full flex flex-col justify-between">
+      <div className="md:grid md:grid-cols-2 gap-x-8 mt-8 items-start">
+        <div className="w-full h-full flex flex-col gap-4 justify-between">
           <div className="w-full">
             <h1 className="font-bold mb-4 flex gap-2">
               <MapPin />
@@ -153,9 +155,9 @@ export default function CalendarView() {
           <tbody>
             {Object.entries(SLOT_TIME).map(([slotNum, time]) => (
               <tr key={slotNum}>
-                <td className="border p-2 text-sm font-medium">
+                <td className="border p-2 text-sm font-medium text-center">
                   Slot {slotNum} <br />
-                  <span className="text-xs text-gray-500">
+                  <span className="text-xs text-gray-500 hidden lg:block">
                     {time.start} - {time.end}
                   </span>
                 </td>
@@ -179,7 +181,7 @@ export default function CalendarView() {
                               toggleSlot(dateKey, Number(slotNum));
                           }}
                           className={cn(
-                            'border p-2 text-center text-xs cursor-pointer',
+                            'border p-1 md:p-2 text-center text-xs cursor-pointer text-[0.7rem] md:text-[1rem]',
                             status === 'booked'
                               ? user.id === bookedUser?._id
                                 ? 'bg-purple-300 text-purple-700'

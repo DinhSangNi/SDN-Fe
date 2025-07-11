@@ -27,7 +27,7 @@ const Footer = () => {
                 className="w-[150px]"
               />
             </div>
-            <div className="md:flex md:flex-row md:gap-10 flex-col basis-2/4 gap-4 text-[0.8rem] items-center md:text-[0.9rem] md:justify-center">
+            <div className="flex md:flex-row md:gap-10 flex-col basis-2/4 gap-4 text-[0.8rem] items-center md:text-[0.9rem] md:justify-center">
               <button className="hover:opacity-60 transition-opacity duration-200">
                 Home
               </button>

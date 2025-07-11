@@ -60,14 +60,6 @@ export default function UserManagePage() {
     setFilters((prev) => ({ ...prev, page: newPage }));
   };
 
-  // const handleToggleIsActiveFilter = (checked: boolean) => {
-  //   setFilters((prev) => ({
-  //     ...prev,
-  //     isActive: checked ? checked : undefined,
-  //     page: 1,
-  //   }));
-  // };
-
   const handleRoleChange = (role: string) => {
     setFilters((prev) => ({
       ...prev,

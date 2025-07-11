@@ -18,6 +18,7 @@ export interface GetPostsParams {
   type?: 'post' | 'announcement';
   priority?: number;
   sort?: 'latest' | 'oldest';
+  keyword?: string;
 }
 
 export const getPosts = async (params: GetPostsParams = {}) => {

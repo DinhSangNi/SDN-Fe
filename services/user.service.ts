@@ -8,6 +8,13 @@ export type GetUsersParams = {
   limit: number;
 };
 
+export type CreateUserDto = {
+  email: string;
+  password: string;
+  fullName: string;
+  role: 'student' | 'admin';
+};
+
 export const getUsers = async (params?: GetUsersParams) => {
   const res = await api.get('/user', {
     params: {
@@ -16,6 +23,11 @@ export const getUsers = async (params?: GetUsersParams) => {
     },
   });
   return res.data.data as PaginationResponse<User>;
+};
+
+export const createUser = async (payload: CreateUserDto) => {
+  const res = await api.post(`/user`, payload);
+  return res.data;
 };
 
 export const updateUserRole = async (id: string, role: 'admin' | 'student') => {

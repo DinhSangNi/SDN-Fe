@@ -37,9 +37,6 @@ export default function ConfirmDeleteDialog({
   const handleDelete = () => {
     deleteMutation.mutate(id, {
       onSuccess: () => {
-        toast.success(
-          `${type === 'post' ? 'Post' : 'User'} deleted successfully`
-        );
         closeRef.current?.click();
       },
       onError: () => {

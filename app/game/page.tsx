@@ -19,6 +19,7 @@ import { UploadCloud, Loader2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useGeneratePoemFromImage } from '@/hooks/game/useCreatePoemFromImage';
 import toast from 'react-hot-toast';
+import { BackButton } from '@/components/custom/BackButton';
 
 const POETIC_FORMS = [
   { value: 'luc-bat', label: 'Lục bát' },
@@ -81,6 +82,9 @@ export default function PoemGeneratorPage() {
 
   return (
     <div className="w-[80%] mx-auto p-4 space-y-6 min-h-screen pt-10">
+      <div className="mb-2">
+        <BackButton />
+      </div>
       <Card className="shadow-lg">
         <CardHeader>
           <CardTitle className="text-xl flex items-center gap-2">
@@ -142,7 +146,7 @@ export default function PoemGeneratorPage() {
 
           <Button
             disabled={!file || generateMutation.isPending}
-            className="w-full"
+            className="w-full font-bold"
             onClick={generatePoem}
           >
             {generateMutation.isPending ? (
@@ -150,7 +154,7 @@ export default function PoemGeneratorPage() {
                 <Loader2 className="animate-spin" /> Generating...
               </span>
             ) : (
-              'Tạo Bài Thơ'
+              'Generate'
             )}
           </Button>
         </CardContent>
@@ -167,14 +171,21 @@ export default function PoemGeneratorPage() {
               <CardTitle className="text-lg">Your poem</CardTitle>
             </CardHeader>
             <CardContent>
-              <pre className="whitespace-pre-wrap leading-relaxed">{poem}</pre>
+              <pre className="whitespace-pre-wrap leading-relaxed">
+                {poem.split(':').length === 1 ? poem : poem.split(':')[1]}
+              </pre>
               <div className="mt-4 flex gap-2">
-                <Button variant="outline" onClick={() => setPoem(null)}>
+                <Button
+                  variant="outline"
+                  onClick={() => setPoem(null)}
+                  className="font-bold"
+                >
                   Regenerate
                 </Button>
                 <Button
                   variant="outline"
                   onClick={() => navigator.clipboard.writeText(poem)}
+                  className="font-bold"
                 >
                   Copy
                 </Button>

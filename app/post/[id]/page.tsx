@@ -56,7 +56,7 @@ export default function PostDetailPage() {
       )}
 
       <div
-        className="prose max-w-none"
+        className="tinymce-content prose max-w-none dark:prose-invert"
         dangerouslySetInnerHTML={{ __html: post.content }}
       />
     </div>

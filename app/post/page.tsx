@@ -15,26 +15,30 @@ import {
   SelectItem,
 } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Loader2Icon } from 'lucide-react';
+import { BackButton } from '@/components/custom/BackButton';
 
 function AllPostsContent() {
   const searchParams = useSearchParams();
   const typeParam = searchParams.get('type') as 'post' | 'announcement' | null;
+  const keyword = searchParams.get('keyword') as string | null;
 
   const [filters, setFilters] = useState({
     type: typeParam ?? undefined,
     isVisible: true,
     sort: 'latest' as 'latest' | 'oldest',
     page: 1,
-    limit: 6,
+    limit: 3,
+    keyword: keyword ?? undefined,
   });
 
   useEffect(() => {
     setFilters((prev) => ({
       ...prev,
       type: typeParam ?? undefined,
+      keyword: keyword ?? undefined,
     }));
-  }, [typeParam]);
+  }, [searchParams]);
 
   const { data, isLoading, isError } = usePost(filters);
 
@@ -61,11 +65,19 @@ function AllPostsContent() {
 
   const totalPages = data?.meta?.totalPages || 1;
 
-  if (isLoading) return <p>Loading {typeParam}...</p>;
+  if (isLoading)
+    return (
+      <div className="min-h-screen py-8 space-y-6 w-[80%] mx-auto flex justify-center items-center">
+        <Loader2Icon className="animate-spin h-10 w-10" />
+      </div>
+    );
   if (isError) return <p>Failed to fetch {typeParam}.</p>;
 
   return (
     <div className="container py-8 space-y-6 w-[80%] mx-auto">
+      <div className="mb-2">
+        <BackButton />
+      </div>
       <div className="flex items-center justify-between">
         <h1 className="text-3xl font-bold">
           {filters.type === 'post' ? 'All Blog Posts' : 'All Announcements'}
@@ -120,7 +132,9 @@ function AllPostsContent() {
 
 const AllPostsPage = () => {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense
+      fallback={<div className="py-8 w-[80%] mx-auto h-full">Loading...</div>}
+    >
       <AllPostsContent />
     </Suspense>
   );
