@@ -1,24 +1,18 @@
-import { createMultipleLabBookings } from '@/services/booking.service';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-
-type CreateMultipleLabBookingsBody = {
-  lab: string;
-  date: string;
-  slot: number;
-}[];
+import {
+  CreateBookingDto,
+  createMultipleLabBookings,
+} from '@/services/booking.service';
+import { useMutation } from '@tanstack/react-query';
+import toast from 'react-hot-toast';
 
 export const useCreateMultipleLabBooking = () => {
-  const queryClient = useQueryClient();
-
   return useMutation({
-    mutationFn: async (payload: CreateMultipleLabBookingsBody) => {
-      return await createMultipleLabBookings(payload);
+    mutationFn: createMultipleLabBookings,
+    onSuccess: () => {
+      toast.success('Booking successfully!');
     },
-    onSuccess: (_data, variables) => {
-      const uniqueLab = [...new Set(variables.map((b) => b.lab))];
-      uniqueLab.forEach((labId) => {
-        queryClient.invalidateQueries({ queryKey: ['lab-booking', labId] });
-      });
+    onError: () => {
+      toast.error('Booking failed!');
     },
   });
 };

@@ -61,7 +61,7 @@ const Navigation = () => {
               className="justify-center cursor-pointer flex flex-col items-center"
               onClick={() => router.push(`/`)}
             >
-              <h1 className="text-[1rem] font-bold">AiSE LAB</h1>
+              <h1 className="text-[1rem] font-bold">AISE LAB</h1>
               <h1 className="hidden md:block text-[0.8rem] text-foreground">
                 Software Engineering
               </h1>
@@ -74,10 +74,14 @@ const Navigation = () => {
             </NavigationButton>
             <NavigationButton>About</NavigationButton>
             <NavigationButton>
-              <Link href={'/lab/calendar'}>Booking</Link>
+              <Link href={'/lab/calendar'} prefetch>
+                Booking
+              </Link>
             </NavigationButton>
             <NavigationButton>
-              <Link href={'/game/'}>Game</Link>
+              <Link href={'/game/'} prefetch>
+                Game
+              </Link>
             </NavigationButton>
           </div>
           <div className="md:flex hidden basis-1/4 flex-1 items-center justify-end gap-2">

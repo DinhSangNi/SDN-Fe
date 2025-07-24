@@ -7,7 +7,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { useLab } from '@/hooks/lab/useLab';
+import { useLabs } from '@/hooks/lab/useLabs';
 import { Lab } from '@/types';
 import { useEffect, useState } from 'react';
 
@@ -18,7 +18,8 @@ type Props = {
 
 const LabSelector = ({ value, onSelect }: Props) => {
   const [selected, setSelected] = useState<string | undefined>(value);
-  const { data: labs, isLoading } = useLab();
+  const { data, isLoading, isSuccess } = useLabs({});
+  const labs = isSuccess ? data.data : [];
 
   useEffect(() => {
     setSelected(value);

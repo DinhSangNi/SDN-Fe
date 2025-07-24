@@ -7,5 +7,6 @@ export const useUsers = (params?: GetUsersParams) => {
     queryKey: ['users', params],
     queryFn: () => getUsers(params),
     enabled: !!params,
+    staleTime: 3 * 60 * 1000,
   });
 };

@@ -13,7 +13,7 @@ export default function PostDetailPage() {
 
   if (isLoading) {
     return (
-      <div className="max-w-3xl mx-auto py-10 space-y-4">
+      <div className="w-[80%] mx-auto py-10 space-y-4">
         <Skeleton className="h-10 w-2/3" />
         <Skeleton className="h-6 w-1/3" />
         <Skeleton className="h-[300px] w-full" />
@@ -24,14 +24,14 @@ export default function PostDetailPage() {
 
   if (isError || !post) {
     return (
-      <div className="max-w-3xl mx-auto py-10 text-center text-red-500">
+      <div className="w-[80%] mx-auto py-10 text-center text-red-500">
         Unable to load article. Please try again later.
       </div>
     );
   }
 
   return (
-    <div className="max-w-3xl mx-auto py-10 space-y-6">
+    <div className="w-[80%] mx-auto py-10 space-y-6">
       <div className="mb-2">
         <BackButton />
       </div>
@@ -51,7 +51,7 @@ export default function PostDetailPage() {
           alt="Cover"
           width={1000}
           height={600}
-          className="rounded-md w-full h-auto object-cover"
+          className="rounded-md w-[60%] mx-auto h-auto object-cover"
         />
       )}
 

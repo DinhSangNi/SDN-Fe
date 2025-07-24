@@ -14,7 +14,7 @@ const Footer = () => {
           <div className="flex md:items-center items-start">
             <div className="flex md:flex-row flex-col basis-1/4 gap-4 items-center justify-center">
               <div className="text-center cursor-pointer text-[0.6rem] sm:text-[0.8rem]">
-                <h1 className="md:text-[0.9rem] font-bold">AiSE LAB</h1>
+                <h1 className="md:text-[0.9rem] font-bold">AISE LAB</h1>
                 <h1 className="md:text-[0.7rem] text-foreground">
                   Software Engineering
                 </h1>
@@ -63,7 +63,7 @@ const Footer = () => {
               </p>
               <p>Email: ohmlab-fpthcm@gmail.com</p>
             </div>
-            <div className="md:text-sm">© 2025 AiSE LAB.</div>
+            <div className="md:text-sm">© 2025 AISE LAB.</div>
           </div>
         </div>
       </div>

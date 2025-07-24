@@ -1,5 +1,4 @@
 import { useQuery } from '@tanstack/react-query';
-import api from '@/lib/axiosInstance';
 import { getBookingsByLabAndDateRange } from '@/services/booking.service';
 
 type UseLabBookingParams = {
@@ -10,7 +9,7 @@ type UseLabBookingParams = {
 
 export const useLabBooking = ({ labId, from, to }: UseLabBookingParams) => {
   return useQuery({
-    queryKey: ['lab-booking', labId, from, to],
+    queryKey: ['lab-bookings', labId, from, to],
     enabled: !!labId,
     queryFn: async () => {
       return await getBookingsByLabAndDateRange(labId, from, to);

@@ -12,7 +12,7 @@ const PostCard = ({ data }: Props) => {
   return (
     <>
       <div
-        className="w-full hover:opacity-80 transition-opacity duration-200 cursor-pointer"
+        className="w-full bg-white hover:opacity-70 border border-white hover:border-gray-300 transition-opacity duration-200 cursor-pointer"
         onClick={() => router.push(`/post/${data._id}`)}
       >
         <div className="w-full">
@@ -21,13 +21,13 @@ const PostCard = ({ data }: Props) => {
             height={800}
             src={data.coverImage}
             alt="blog_card"
-            className="w-full aspect-square md:h-[250px] rounded-sm"
+            className="w-full aspect-square md:h-[250px]"
           />
         </div>
 
-        <div>
+        <div className="p-4">
           {/* Title */}
-          <h1 className="text-[1.2rem] py-4 font-bold">
+          <h1 className="text-[1.2rem] pb-4 font-bold">
             <p className="line-clamp-2">{data.title}</p>
           </h1>
 

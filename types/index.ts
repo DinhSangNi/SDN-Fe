@@ -46,4 +46,25 @@ export type Lab = {
   name: string;
   description?: string;
   location?: string;
+  status: 'active' | 'inactive' | 'maintaince';
+  totalSeats: number;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type Seat = {
+  _id: string;
+  seatNumber: string;
+  lab: Lab | string;
+  status: 'AVAILABLE' | 'MAINTENANCE' | 'DISABLED';
+};
+
+export type Booking = {
+  _id: string;
+  user: User;
+  seat: Seat;
+  lab: Lab;
+  date: string;
+  slot: number;
+  status: 'cancelled' | 'approved';
 };
