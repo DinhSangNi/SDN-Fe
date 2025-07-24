@@ -9,6 +9,8 @@ type Props = {
 
 const PostCard = ({ data }: Props) => {
   const router = useRouter();
+
+  const cleanContent = data.content.replace(/<img[^>]*>/g, '');
   return (
     <>
       <div
@@ -48,24 +50,11 @@ const PostCard = ({ data }: Props) => {
               )}
               <p>{data?.createdBy?.fullName}</p>
             </div>
-            {/* <div className="flex gap-2 items-center">
-              <FolderIcon className="w-4 h-4 text-black" />
-              {type === BlogType.ACTIVITY ? (
-                <p>{type}</p>
-              ) : (
-                data.categories.map((cate, index) => (
-                  <p
-                    className="mr-1"
-                    key={cate}
-                  >{`${cate}${index === 0 ? ', ' : ''}`}</p>
-                ))
-              )}
-            </div> */}
           </div>
 
           {/* Description */}
           <div
-            dangerouslySetInnerHTML={{ __html: data.content }}
+            dangerouslySetInnerHTML={{ __html: cleanContent }}
             className="line-clamp-4"
           ></div>
         </div>
