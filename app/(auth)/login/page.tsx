@@ -14,6 +14,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { ButtonLoading } from '@/components/custom/ButtonLoading';
+import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
 import Link from 'next/link';
@@ -23,6 +24,7 @@ import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import { AppDispatch } from '@/store';
 import toast from 'react-hot-toast';
+import { FcGoogle } from 'react-icons/fc';
 
 const loginSchema = z.object({
   email: z.string().email({ message: 'Email không hợp lệ' }),
@@ -69,6 +71,11 @@ export default function LoginPage() {
         position: 'top-center',
       });
     }
+  };
+
+  const handleGoogleLogin = () => {
+    // TODO: Implement Google OAuth login
+    toast.success('Google login will be implemented soon!');
   };
 
   return (
@@ -135,6 +142,24 @@ export default function LoginPage() {
               <ButtonLoading type="submit" className="w-full rounded-full">
                 Login
               </ButtonLoading>
+
+              {/* Divider */}
+              <div className="flex items-center my-4">
+                <div className="flex-1 border-t border-gray-300"></div>
+                <span className="px-4 text-sm text-gray-500">or</span>
+                <div className="flex-1 border-t border-gray-300"></div>
+              </div>
+
+              {/* Google Login Button */}
+              <Button
+                type="button"
+                variant="outline"
+                className="w-full rounded-full flex items-center justify-center gap-2"
+                onClick={handleGoogleLogin}
+              >
+                <FcGoogle size={20} />
+                Continue with Google
+              </Button>
 
               <div className="w-full text-center text-[0.9rem] mt-4">
                 <p>

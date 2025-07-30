@@ -14,6 +14,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { ButtonLoading } from '@/components/custom/ButtonLoading';
+import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
 import Link from 'next/link';
@@ -23,6 +24,7 @@ import { useDispatch } from 'react-redux';
 import { AppDispatch } from '@/store';
 import { login } from '@/store/slices/authSlice';
 import { useRouter } from 'next/navigation';
+import { FcGoogle } from 'react-icons/fc';
 
 const loginSchema = z.object({
   fullName: z.string().min(1, {
@@ -76,6 +78,11 @@ export default function LoginPage() {
       });
     }
     console.log('Đăng ký với:', values);
+  };
+
+  const handleGoogleRegister = () => {
+    // TODO: Implement Google OAuth registration
+    toast.success('Google registration will be implemented soon!');
   };
 
   return (
@@ -164,6 +171,24 @@ export default function LoginPage() {
               >
                 Sign up
               </ButtonLoading>
+
+              {/* Divider */}
+              <div className="flex items-center my-4">
+                <div className="flex-1 border-t border-gray-300"></div>
+                <span className="px-4 text-sm text-gray-500">or</span>
+                <div className="flex-1 border-t border-gray-300"></div>
+              </div>
+
+              {/* Google Register Button */}
+              <Button
+                type="button"
+                variant="outline"
+                className="w-full rounded-full flex items-center justify-center gap-2 py-4"
+                onClick={handleGoogleRegister}
+              >
+                <FcGoogle size={20} />
+                Sign up with Google
+              </Button>
 
               <div className="w-full text-center text-[0.9rem] mt-4">
                 <p>
