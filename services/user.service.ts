@@ -16,31 +16,30 @@ export type CreateUserDto = {
 };
 
 export const getUsers = async (params?: GetUsersParams) => {
-  const res = await api.get('/user', {
+  const res = await api.get('/users', {
     params: {
       ...params,
-      isActive: params?.isActive?.toString(),
     },
   });
   return res.data.data as PaginationResponse<User>;
 };
 
 export const createUser = async (payload: CreateUserDto) => {
-  const res = await api.post(`/user`, payload);
+  const res = await api.post(`/users`, payload);
   return res.data;
 };
 
 export const updateUserRole = async (id: string, role: 'admin' | 'student') => {
-  const res = await api.patch(`/user/${id}/role`, { role });
+  const res = await api.patch(`/users/${id}/role`, { role });
   return res.data;
 };
 
 export const updateUserActiveStatus = async (id: string, isActive: boolean) => {
-  const res = await api.patch(`/user/${id}/active`, { isActive });
+  const res = await api.patch(`/users/${id}/active`, { isActive });
   return res.data;
 };
 
 export const deleteUser = async (id: string) => {
-  const res = await api.delete(`/user/${id}`);
+  const res = await api.delete(`/users/${id}`);
   return res.data;
 };
