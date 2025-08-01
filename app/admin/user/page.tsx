@@ -1,7 +1,7 @@
 'use client';
 
 import { useQuery } from '@tanstack/react-query';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 import { GetUsersParams } from '@/services/user.service';
@@ -15,8 +15,6 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { Switch } from '@/components/ui/switch';
-import { Label } from '@/components/ui/label';
 import { useUsers } from '@/hooks/user/useUser';
 import {
   Select,
@@ -37,14 +35,15 @@ import { useUpdateUserActive } from '@/hooks/user/useUpdateUserActive';
 import ConfirmDeleteDialog from '@/components/custom/ConfirmDeleteDialog';
 import { Tooltip } from '@/components/ui/tooltip';
 import { TooltipContent, TooltipTrigger } from '@radix-ui/react-tooltip';
+import { Loader2 } from "lucide-react"
 
 const roles = ['admin', 'student'];
 
 export default function UserManagePage() {
   const [filters, setFilters] = useState<GetUsersParams>({
+    isActive: true,
     page: 1,
     limit: 10,
-    isActive: undefined,
     role: undefined,
   });
 
@@ -76,7 +75,13 @@ export default function UserManagePage() {
     updateActiveMutation.mutate({ id, isActive: !current });
   };
 
-  if (isLoading) return <p>Loading user list...</p>;
+  if (isLoading) {
+    return (
+      <div className='flex justify-center items-center h-screen'>
+        <Loader2 className="h-10 w-10 animate-spin" />
+      </div>
+    );
+  }
   if (isError) return <p>Failed to fetch user data.</p>;
 
   return (

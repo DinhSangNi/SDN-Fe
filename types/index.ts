@@ -67,4 +67,6 @@ export type Booking = {
   date: string;
   slot: number;
   status: 'cancelled' | 'approved';
+  createdAt?: string;
+  updatedAt?: string;
 };

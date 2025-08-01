@@ -14,7 +14,7 @@ import {
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
-import { ChevronLeft, ChevronRight, MoreVertical } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Loader2, MoreVertical } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -55,7 +55,13 @@ export default function PostManagePage() {
     toggleVisibilityMutation.mutate({ id: postId, isVisible: !current });
   };
 
-  if (isLoading) return <p>Loading post list...</p>;
+  if (isLoading) {
+    return (
+      <div className='flex justify-center items-center h-screen'>
+        <Loader2 className="h-10 w-10 animate-spin" />
+      </div>
+    );
+  }
   if (isError) return <p>Failed to fetch post data.</p>;
 
   return (
@@ -108,11 +114,10 @@ export default function PostManagePage() {
               <TableCell>
                 <button
                   onClick={() => toggleVisibility(post._id, post.isVisible)}
-                  className={`text-xs font-bold px-2 py-1 rounded-full transition-colors ${
-                    post.isVisible
+                  className={`text-xs font-bold px-2 py-1 rounded-full transition-colors ${post.isVisible
                       ? 'bg-green-100 text-green-700 hover:bg-green-200'
                       : 'bg-gray-200 text-gray-600 hover:bg-gray-300'
-                  }`}
+                    }`}
                 >
                   {post.isVisible ? 'Visible' : 'Hidden'}
                 </button>
