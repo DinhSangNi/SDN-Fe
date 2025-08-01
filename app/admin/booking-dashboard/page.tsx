@@ -238,8 +238,8 @@ export default function BookingDashboardPage() {
                 <div>
                   <p className="text-sm font-medium text-gray-600">Time Slot</p>
                   <p className="text-lg font-bold">
-                    {SLOT_TIME[selectedSlot as unknown as keyof typeof SLOT_TIME]?.start} -{' '}
-                    {SLOT_TIME[selectedSlot as unknown as keyof typeof SLOT_TIME]?.end}
+                    {SLOT_TIME[selectedSlot as keyof typeof SLOT_TIME]?.start} -{' '}
+                    {SLOT_TIME[selectedSlot as keyof typeof SLOT_TIME]?.end}
                   </p>
                 </div>
               </div>
