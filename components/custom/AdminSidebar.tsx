@@ -10,27 +10,14 @@ import {
   ChevronDown,
   ChevronRight,
   LayoutDashboard,
-  Settings,
-  LogOut,
-  Shield,
-  BarChart3,
-  Users,
-  BookOpen,
-  Sparkles,
 } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
 } from '@/components/ui/collapsible';
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from '@/components/ui/tooltip';
 import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 
@@ -38,114 +25,63 @@ type MenuItem = {
   label: string;
   href: string;
   icon: React.ReactNode;
-  badge?: string;
-  description?: string;
-};
-
-type MenuSection = {
-  title: string;
-  icon: React.ReactNode;
-  items: MenuItem[];
-  sectionKey: string;
-  color?: string;
 };
 
 const postMenu: MenuItem[] = [
   {
-    label: 'Post Management',
+    label: 'Post management',
     href: '/admin/post',
-    icon: <BookOpen className="w-4 h-4" />,
-    description: 'Manage all blog posts and articles',
+    icon: <FileText className="w-4 h-4" />,
   },
   {
-    label: 'Create Post',
+    label: 'Create post',
     href: '/admin/post/create',
     icon: <PlusCircle className="w-4 h-4" />,
-    description: 'Write and publish new content',
   },
 ];
 
 const userMenu: MenuItem[] = [
   {
-    label: 'User Management',
+    label: 'User management',
     href: '/admin/user',
-    icon: <Users className="w-4 h-4" />,
-    description: 'Manage user accounts and permissions',
+    icon: <User className="w-4 h-4" />,
   },
   {
-    label: 'Create User',
+    label: 'Create user',
     href: '/admin/user/create',
     icon: <PlusCircle className="w-4 h-4" />,
-    description: 'Add new user accounts',
   },
 ];
 
 const labBookingMenu: MenuItem[] = [
   {
-    label: 'Lab Booking Management',
+    label: 'Lab Booking management',
     href: '/admin/lab-booking',
     icon: <Calendar className="w-4 h-4" />,
-    description: 'Manage lab reservations and schedules',
-    badge: 'New',
   },
   {
     label: 'Booking Dashboard',
     href: '/admin/booking-dashboard',
-    icon: <BarChart3 className="w-4 h-4" />,
-    description: 'View booking analytics and reports',
+    icon: <LayoutDashboard className='w-4 h-4' />,
   },
 ];
 
 const labMenu: MenuItem[] = [
   {
-    label: 'Lab Management',
+    label: 'Lab management',
     href: '/admin/lab',
     icon: <Building className="w-4 h-4" />,
-    description: 'Manage laboratory facilities',
   },
   {
     label: 'Create Lab',
     href: '/admin/lab/create',
     icon: <PlusCircle className="w-4 h-4" />,
-    description: 'Add new laboratory spaces',
-  },
-];
-
-const menuSections: MenuSection[] = [
-  {
-    title: 'Lab Booking',
-    icon: <Calendar className="w-5 h-5" />,
-    items: labBookingMenu,
-    sectionKey: 'lab-booking',
-    color: 'from-blue-500/10 to-cyan-500/10',
-  },
-  {
-    title: 'Content',
-    icon: <FileText className="w-5 h-5" />,
-    items: postMenu,
-    sectionKey: 'post',
-    color: 'from-green-500/10 to-emerald-500/10',
-  },
-  {
-    title: 'Users',
-    icon: <User className="w-5 h-5" />,
-    items: userMenu,
-    sectionKey: 'user',
-    color: 'from-purple-500/10 to-pink-500/10',
-  },
-  {
-    title: 'Facilities',
-    icon: <Building className="w-5 h-5" />,
-    items: labMenu,
-    sectionKey: 'lab',
-    color: 'from-orange-500/10 to-red-500/10',
   },
 ];
 
 export default function AdminSidebar() {
   const pathname = usePathname();
-  const [openSections, setOpenSections] = useState<string[]>(['lab-booking', 'post', 'user', 'lab']);
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [openSections, setOpenSections] = useState<string[]>(['post', 'user', 'lab-booking', 'lab']);
 
   const toggleSection = (section: string) => {
     setOpenSections(prev =>
@@ -156,14 +92,6 @@ export default function AdminSidebar() {
   };
 
   const isActive = (href: string) => pathname === href;
-
-  const isParentActive = (items: MenuItem[]) =>
-    items.some(item => pathname === item.href);
-
-  const getActiveCount = () => {
-    const totalItems = menuSections.reduce((acc, section) => acc + section.items.length, 0);
-    return totalItems;
-  };
 
   const renderMenuSection = (
     title: string,
