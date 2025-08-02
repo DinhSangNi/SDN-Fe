@@ -47,8 +47,7 @@ const userSlice = createSlice({
       state.email = null;
       state.avatar = null;
       state.role = null;
-      localStorage.removeItem('user');
-      localStorage.removeItem('accessToken');
+      localStorage.clear();
     },
   },
 });

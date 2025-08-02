@@ -25,6 +25,8 @@ import { AppDispatch } from '@/store';
 import { login } from '@/store/slices/authSlice';
 import { useRouter } from 'next/navigation';
 import { FcGoogle } from 'react-icons/fc';
+import { useEffect } from 'react';
+import { isLoggedIn } from '@/lib/checkAuth';
 
 const loginSchema = z.object({
   fullName: z.string().min(1, {
@@ -80,10 +82,15 @@ export default function LoginPage() {
     console.log('Đăng ký với:', values);
   };
 
-  const handleGoogleRegister = () => {
-    // TODO: Implement Google OAuth registration
-    toast.success('Google registration will be implemented soon!');
-  };
+  // const handleGoogleRegister = () => {
+  //   toast.success('Google registration will be implemented soon!');
+  // };
+
+  useEffect(() => {
+    if (isLoggedIn()) {
+      router.replace('/');
+    }
+  }, [])
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-100 dark:bg-background">
@@ -179,7 +186,7 @@ export default function LoginPage() {
                 <div className="flex-1 border-t border-gray-300"></div>
               </div>
 
-              {/* Google Register Button */}
+              {/* Google Register Button
               <Button
                 type="button"
                 variant="outline"
@@ -188,7 +195,7 @@ export default function LoginPage() {
               >
                 <FcGoogle size={20} />
                 Sign up with Google
-              </Button>
+              </Button> */}
 
               <div className="w-full text-center text-[0.9rem] mt-4">
                 <p>

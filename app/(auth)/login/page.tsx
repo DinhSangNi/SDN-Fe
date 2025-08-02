@@ -24,6 +24,8 @@ import { useRouter } from 'next/navigation';
 import { AppDispatch } from '@/store';
 import toast from 'react-hot-toast';
 import { GoogleLoginButton } from '@/components/auth/GoogleLoginButton';
+import { useEffect } from 'react';
+import { isLoggedIn } from '@/lib/checkAuth';
 
 const loginSchema = z.object({
   email: z.string().email({ message: 'Email không hợp lệ' }),
@@ -40,7 +42,6 @@ export default function LoginPage() {
       password: '',
     },
   });
-
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
 
@@ -72,7 +73,11 @@ export default function LoginPage() {
     }
   };
 
-
+  useEffect(() => {
+    if (isLoggedIn()) {
+      router.replace('/');
+    }
+  }, [])
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-100 dark:bg-background">
