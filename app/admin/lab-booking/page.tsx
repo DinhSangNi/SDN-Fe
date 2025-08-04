@@ -19,7 +19,7 @@ import {
 } from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 import { format } from 'date-fns';
 import { GetAllBookingsParams } from '@/services/booking.service';
 import { useAdminBookings } from '@/hooks/booking/useAdminBookings';
@@ -190,7 +190,8 @@ export default function BookingManagePage() {
       {selectedBookings.length > 0 && (
         <div className="flex justify-between items-center">
           <p className="text-sm">{selectedBookings.length} selected</p>
-          <Button variant="destructive" onClick={handleCancelSelected}>
+          <Button variant="destructive" onClick={handleCancelSelected} className="flex items-center gap-2">
+            <X className="w-4 h-4" />
             Cancel Selected
           </Button>
         </div>
@@ -206,7 +207,7 @@ export default function BookingManagePage() {
                     checked={
                       bookings.length > 0 &&
                       selectedBookings.length ===
-                        bookings.filter((b) => b.status !== 'cancelled').length
+                      bookings.filter((b) => b.status !== 'cancelled').length
                     }
                     onCheckedChange={() => {
                       toggleSelectAll();
@@ -243,11 +244,10 @@ export default function BookingManagePage() {
                 </TableCell>
                 <TableCell>
                   <Badge
-                    className={`capitalize ${
-                      booking.status === 'approved'
-                        ? 'bg-green-500 hover:bg-green-500 text-white'
-                        : 'bg-orange-300 hover:bg-orange-300 text-white'
-                    }`}
+                    className={`capitalize ${booking.status === 'approved'
+                      ? 'bg-green-500 hover:bg-green-500 text-white'
+                      : 'bg-orange-300 hover:bg-orange-300 text-white'
+                      }`}
                   >
                     {booking.status}
                   </Badge>
