@@ -2,7 +2,7 @@
 
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Eye, Trash2 } from 'lucide-react';
 
 import { GetUsersParams } from '@/services/user.service';
 import { User } from '@/types';
@@ -191,15 +191,18 @@ export default function UserManagePage() {
                     <DropdownMenuContent align="end">
                       <DropdownMenuItem
                         onClick={() => console.log('View', user._id)}
+                        className="flex items-center gap-2"
                       >
-                        👁️ View
+                        <Eye className="w-4 h-4" />
+                        View
                       </DropdownMenuItem>
                       <ConfirmDeleteDialog type="user" id={user._id}>
                         <DropdownMenuItem
-                          className="text-red-600"
+                          className="text-red-600 flex items-center gap-2"
                           onSelect={(e) => e.preventDefault()}
                         >
-                          🗑️ Delete
+                          <Trash2 className="w-4 h-4" />
+                          Delete
                         </DropdownMenuItem>
                       </ConfirmDeleteDialog>
                     </DropdownMenuContent>

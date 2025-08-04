@@ -14,7 +14,7 @@ import {
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
-import { ChevronLeft, ChevronRight, Loader2, MoreVertical } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Loader2, MoreVertical, Eye, Edit, Trash2 } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -115,8 +115,8 @@ export default function PostManagePage() {
                 <button
                   onClick={() => toggleVisibility(post._id, post.isVisible)}
                   className={`text-xs font-bold px-2 py-1 rounded-full transition-colors ${post.isVisible
-                      ? 'bg-green-100 text-green-700 hover:bg-green-200'
-                      : 'bg-gray-200 text-gray-600 hover:bg-gray-300'
+                    ? 'bg-green-100 text-green-700 hover:bg-green-200'
+                    : 'bg-gray-200 text-gray-600 hover:bg-gray-300'
                     }`}
                 >
                   {post.isVisible ? 'Visible' : 'Hidden'}
@@ -136,22 +136,27 @@ export default function PostManagePage() {
                   <DropdownMenuContent align="end">
                     <DropdownMenuItem
                       onClick={() => router.push(`/post/${post._id}`)}
+                      className="flex items-center gap-2"
                     >
-                      👁️ View
+                      <Eye className="w-4 h-4" />
+                      View
                     </DropdownMenuItem>
                     <DropdownMenuItem
                       onClick={() =>
                         router.push(`/admin/post/${post._id}/edit`)
                       }
+                      className="flex items-center gap-2"
                     >
-                      👁️ Edit
+                      <Edit className="w-4 h-4" />
+                      Edit
                     </DropdownMenuItem>
                     <ConfirmDeleteDialog type="post" id={post._id}>
                       <DropdownMenuItem
-                        className="text-red-600"
+                        className="text-red-600 flex items-center gap-2"
                         onSelect={(e) => e.preventDefault()}
                       >
-                        🗑️ Delete
+                        <Trash2 className="w-4 h-4" />
+                        Delete
                       </DropdownMenuItem>
                     </ConfirmDeleteDialog>
                   </DropdownMenuContent>

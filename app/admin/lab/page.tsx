@@ -28,7 +28,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { ChevronLeft, ChevronRight, MoreHorizontal } from 'lucide-react';
+import { ChevronLeft, ChevronRight, MoreHorizontal, Eye, Edit, Trash2 } from 'lucide-react';
 import Link from 'next/link';
 
 export default function LabsManagementPage() {
@@ -133,12 +133,17 @@ export default function LabsManagementPage() {
                       </DropdownMenuTrigger>
                       <DropdownMenuContent align="end">
                         <DropdownMenuItem>
-                          <Link href={`/admin/lab/${lab._id}`}>
+                          <Link href={`/admin/lab/${lab._id}`} className="flex items-center gap-2">
+                            <Eye className="w-4 h-4" />
                             View details
                           </Link>
                         </DropdownMenuItem>
-                        <DropdownMenuItem>Edit</DropdownMenuItem>
-                        <DropdownMenuItem className="text-red-600 focus:text-red-700">
+                        <DropdownMenuItem className="flex items-center gap-2">
+                          <Edit className="w-4 h-4" />
+                          Edit
+                        </DropdownMenuItem>
+                        <DropdownMenuItem className="text-red-600 focus:text-red-700 flex items-center gap-2">
+                          <Trash2 className="w-4 h-4" />
                           Delete
                         </DropdownMenuItem>
                       </DropdownMenuContent>
